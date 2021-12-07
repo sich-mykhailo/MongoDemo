@@ -4,6 +4,7 @@ import com.example.mongodemo.model.Movie;
 import com.example.mongodemo.repository.MovieRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,10 @@ public class MovieController {
     @GetMapping("/by-title")
     public List<Movie> findByTitle(@RequestParam String title) {
         return movieRepository.findMovieByTitleContains(title);
+    }
+    @DeleteMapping("/{id}")
+    public void delete( @PathVariable String id) {
+        movieRepository.deleteById(id);
     }
 
     @GetMapping("/inject")
